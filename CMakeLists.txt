@@ -45,7 +45,15 @@ aux_source_directory(src/controllers CTL_SRC)
 aux_source_directory(src/filters FILTER_SRC)
 aux_source_directory(src/plugins PLUGIN_SRC)
 aux_source_directory(src/models MODEL_SRC)
-set(SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
+aux_source_directory(src SRC_SRC)
+
+
+add_library(game
+    ${SRC_SRC}
+)
+
+target_include_directories(game PUBLIC include)
+
 
 drogon_create_views(${PROJECT_NAME} ${CMAKE_CURRENT_SOURCE_DIR}/src/views
                     ${CMAKE_CURRENT_BINARY_DIR})
@@ -67,6 +75,8 @@ target_sources(${PROJECT_NAME}
                ${FILTER_SRC}
                ${PLUGIN_SRC}
                ${MODEL_SRC})
+
+target_link_libraries(${PROJECT_NAME} PRIVATE game)
 # ##############################################################################
 # uncomment the following line for dynamically loading views 
 # set_property(TARGET ${PROJECT_NAME} PROPERTY ENABLE_EXPORTS ON)
