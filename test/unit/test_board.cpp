@@ -11,7 +11,7 @@ protected:
     Puissance4 puissance4;
     GameInstance game;
 
-    GameInstanceTest() : game(puissance4) {}
+    GameInstanceTest() : game(std::make_unique<Puissance4>()) {}
 
     void SetUp() override {
         game.placePiece({1,1}, std::make_unique<Pawn>());
