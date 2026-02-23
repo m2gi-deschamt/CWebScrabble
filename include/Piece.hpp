@@ -14,7 +14,13 @@ public:
 
 class Pawn : public Piece {
 public:
-    Pawn() : Piece("pawn") {}
+    Pawn() : Piece("Pawn") {}
+};
+
+
+class Letter : public Piece {
+    public :
+        Letter() : Piece("Letter"){}
 };
 
 
