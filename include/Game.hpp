@@ -3,10 +3,9 @@
 
 
 #include "Board.hpp"
-#include "Move.hpp"
+#include "Action.hpp"
 #include "Player.hpp"
 #include "Piece.hpp"
-
 
 #include <string>
 #include <set>
@@ -21,33 +20,15 @@ enum GameState {
 class Game {
     public:
         Game() = default;
-        virtual bool isMoveValid(Move move, const Board& board) const = 0;
+        virtual bool isMoveValid(Action action, const Board& board) const = 0;
         virtual bool checkVictory(const Board& board) const = 0;
         virtual std::string getName() const = 0;
         virtual int getRows() const = 0;
         virtual int getCols() const = 0;
+        virtual int getMinPlayer() const = 0;
         virtual int getMaxPlayer() const = 0;
 
     private: 
-        int NUMBER_OF_PLAYER;
-};
-
-
-class Puissance4 : public Game {
-    private:
-        int NUMBER_OF_PLAYER = 2;
-        std::string name = "Puissance 4";
-        int board_rows = 6;
-        int board_columns = 7;
-    
-    public:
-        Puissance4(){};
-        bool isMoveValid(Move move, const Board& board) const override;
-        bool checkVictory(const Board& board) const override;
-        std::string getName() const override;
-        int getRows() const override;
-        int getCols() const override;  
-        int getMaxPlayer() const override;
 };
 
 class GameInstance {

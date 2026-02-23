@@ -2,16 +2,17 @@
 #include "Board.hpp"
 #include "Piece.hpp"
 #include "Game.hpp"
+#include "Scrabble.hpp"
 
 using namespace std;
 
 
 class GameInstanceTest : public ::testing::Test {
 protected:
-    Puissance4 puissance4;
+    Scrabble scrabble;
     GameInstance game;
 
-    GameInstanceTest() : game(std::make_unique<Puissance4>()) {}
+    GameInstanceTest() : game(std::make_unique<Scrabble>()) {}
 
     void SetUp() override {
         game.placePiece({1,1}, std::make_unique<Pawn>());
