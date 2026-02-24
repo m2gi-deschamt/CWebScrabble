@@ -43,10 +43,12 @@ private:
     int rows;
     int columns;
 
-    void movePiece(Position from, Position to); 
-    bool havePiece(Position position) const;
-    void placePiece(Position position, std::unique_ptr<Piece> piece);
+    void movePiece(const Position& from, const Position& to); 
+    bool havePiece(const Position& position);
+    void placePiece(const Position& position, std::unique_ptr<Piece> piece);
+    Piece* getPiece(const Position& position);
     
+    Cell& getCell(const Position& position);
     Cell& cellAt(int row, int col); 
     const Cell& cellAt(int row, int col) const;
      

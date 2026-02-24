@@ -50,8 +50,17 @@ class GameInstance {
         const set<Player>& getPlayers() const;
         
         void placePiece(Position position, std::unique_ptr<Piece> piece);
-
-        bool havePiece(Position pos) const;
+        bool havePiece(Position pos);
         void display();
 };
+
+
+
+class ScrabbleInstance : public GameInstance {
+    public: 
+        Letter drawLetter(){
+
+        }
+};
+
 #endif

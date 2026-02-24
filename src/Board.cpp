@@ -1,6 +1,7 @@
 #include "Board.hpp"
 #include <cassert>
 
+
 Board::Board(int r, int c) : rows(r), columns(c), cells(r) {
     for (auto& row : cells) {
         row.reserve(c);               
@@ -10,22 +11,30 @@ Board::Board(int r, int c) : rows(r), columns(c), cells(r) {
     }
 }
 
-bool Board::havePiece(Position position) const {
-    return !cells[position.row][position.col].isEmpty();
+Cell& Board::getCell(const Position& position) {
+    return cells[position.row][position.col];
 }
 
-void Board::placePiece(Position position, std::unique_ptr<Piece> piece)
-{
+
+Piece* Board::getPiece(const Position& position) {
+    Cell& cell = getCell(position);
+    if(havePiece(position)) return cell.getPiece();
+    assert("No piece on this case");
+}
+
+bool Board::havePiece(const Position& position) {
+    return !getCell(position).isEmpty();
+}
+
+void Board::placePiece(const Position& position, std::unique_ptr<Piece> piece) {
     assert(piece && "Cannot place a null piece");
-
-    Cell& cell = cells[position.row][position.col];
+    Cell& cell = getCell(position);
     assert(cell.isEmpty() && "Cell already contains a piece");
-
     cell.setPiece(std::move(piece));
 }
 
-void Board::movePiece(Position from, Position to) {
-    cells[to.row][to.col].setPiece(cells[from.row][from.col].takePiece());
+void Board::movePiece(const Position& from, const Position& to) {
+    if(havePiece(to)) getCell(to).setPiece(cells[from.row][from.col].takePiece());
 }
 
 Cell& Board::cellAt(int row, int col) {
