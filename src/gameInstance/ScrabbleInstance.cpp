@@ -1,8 +1,6 @@
 
 #include "gameInstance/ScrabbleInstance.hpp"
 
-
-
 ScrabbleInstance::ScrabbleInstance() = default;
 ScrabbleInstance::~ScrabbleInstance() = default;
 
