@@ -3,7 +3,7 @@
 #include "Board.hpp"
 #include "Player.hpp"
 #include "Piece.hpp"
-#include "Game/Scrabble.hpp"
+#include "game/Scrabble.hpp"
 #include "Action.hpp"
 
 #include <array>

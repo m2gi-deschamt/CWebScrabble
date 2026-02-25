@@ -1,8 +1,8 @@
 #include <gtest/gtest.h>
 #include "Board.hpp"
 #include "Piece.hpp"
-#include "Game/Scrabble.hpp"
-#include "GameInstance/GameInstance.hpp"
+#include "game/Scrabble.hpp"
+#include "gameInstance/GameInstance.hpp"
 
 #include <memory>
 

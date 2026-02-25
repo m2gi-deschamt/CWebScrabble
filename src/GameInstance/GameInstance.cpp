@@ -1,5 +1,5 @@
-#include "GameInstance/GameInstance.hpp"
-#include "Game/Game.hpp"
+#include "gameInstance/GameInstance.hpp"
+#include "game/Game.hpp"
 
 #include <memory>
 

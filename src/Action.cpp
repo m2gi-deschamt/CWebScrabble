@@ -1,5 +1,5 @@
 #include "Action.hpp"
-#include "GameInstance/GameInstance.hpp"
+#include "gameInstance/GameInstance.hpp"
 
 void DrawLetterAction::execute(GameInstance& instance) {
         instance.accept(*this);

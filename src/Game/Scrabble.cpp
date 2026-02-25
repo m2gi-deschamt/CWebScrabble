@@ -1,5 +1,5 @@
 #include "Action.hpp"
-#include "Game/Scrabble.hpp"
+#include "game/Scrabble.hpp"
 
 Scrabble::Scrabble() = default;
 
