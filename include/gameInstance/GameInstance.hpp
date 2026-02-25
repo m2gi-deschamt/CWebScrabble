@@ -20,6 +20,7 @@ protected:
     Board board;
 
 public:
+    GameInstance();
     GameInstance(std::unique_ptr<Game> g);
     virtual ~GameInstance();
 
@@ -35,14 +36,4 @@ public:
     void display();
 
     virtual void accept(DrawLetterAction&) = 0;
-};
-
-class ScrabbleInstance : public GameInstance {
-public:
-    ScrabbleInstance(std::unique_ptr<Scrabble> g);
-
-    void accept(DrawLetterAction&);
-
-private:
-    void drawLetter();
 };

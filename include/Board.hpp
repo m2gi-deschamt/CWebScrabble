@@ -43,6 +43,8 @@ private:
     int columns;
 
     public : 
+        Board();
+        ~Board();
         Board(int rows, int columns);
         void movePiece(const Position& from, const Position& to); 
         bool havePiece(const Position& position);

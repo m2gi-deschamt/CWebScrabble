@@ -2,7 +2,7 @@
 #include "Board.hpp"
 #include "Piece.hpp"
 #include "game/Scrabble.hpp"
-#include "gameInstance/GameInstance.hpp"
+#include "gameInstance/ScrabbleInstance.hpp"
 
 using namespace std;
 

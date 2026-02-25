@@ -3,6 +3,9 @@
 
 #include <memory>
 
+
+GameInstance::GameInstance() = default;
+
 GameInstance::GameInstance(std::unique_ptr<Game> g) 
         : game(std::move(g)),
           board(game->getRows(), game->getCols()) {}
@@ -41,16 +44,4 @@ void GameInstance::placePiece(Position& position, std::unique_ptr<Piece> piece) 
 
 bool GameInstance::havePiece(Position& pos) {
     return board.havePiece(pos);
-}
-
-
-ScrabbleInstance::ScrabbleInstance(std::unique_ptr<Scrabble> g)
-    : GameInstance(std::unique_ptr<Game>(std::move(g))) {};
-
-void ScrabbleInstance::accept(DrawLetterAction&) {
-        drawLetter();
-}
-
-void ScrabbleInstance::drawLetter() {
-        cout << "implem drawLetter bro !! ";
 }

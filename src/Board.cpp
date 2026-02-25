@@ -3,6 +3,11 @@
 
 Cell::Cell() : piece(nullptr) {}
 
+
+Board::Board() = default;
+Board::~Board() = default;
+
+
 Board::Board(int r, int c) : rows(r), columns(c), cells(r) {
     for (auto& row : cells) {
         row.reserve(c);               
