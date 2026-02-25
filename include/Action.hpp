@@ -1,6 +1,8 @@
 #ifndef ACTION_HPP
 #define ACTION_HPP
 
+#include "Game.hpp"
+
 class Action {
 public:
     virtual ~Action() = default;
@@ -9,9 +11,7 @@ public:
 
 class DrawLetterAction : public Action {
 public:
-    void execute(GameInstance& instance) override {
-        instance.drawLetter();
-    }
+    void execute(GameInstance& instance) override;
 };
 
 #endif

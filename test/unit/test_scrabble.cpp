@@ -2,15 +2,15 @@
 #include "Board.hpp"
 #include "Piece.hpp"
 #include "Game.hpp"
-#include "Scrabble.hpp"
+
+#include <memory>
 
 using namespace std;
 
 
 class ScrabbleTest : public ::testing::Test {
 protected:
-    Scrabble scrabble;
-    GameInstance game;
+    ScrabbleInstance game;
 
     ScrabbleTest() : game(std::make_unique<Scrabble>()) {}
 

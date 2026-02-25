@@ -2,7 +2,6 @@
 #include "Board.hpp"
 #include "Piece.hpp"
 #include "Game.hpp"
-#include "Scrabble.hpp"
 
 using namespace std;
 
@@ -10,7 +9,7 @@ using namespace std;
 class GameInstanceTest : public ::testing::Test {
 protected:
     Scrabble scrabble;
-    GameInstance game;
+    ScrabbleInstance game;
 
     GameInstanceTest() : game(std::make_unique<Scrabble>()) {}
 

@@ -2,6 +2,7 @@
 
 #include <iostream>
 
+
 void GameInstance::addPlayer(const Player &player) {
     if (players.size() < game->getMaxPlayer()) {
         players.insert(player);
@@ -34,4 +35,13 @@ void GameInstance::placePiece(Position position, std::unique_ptr<Piece> piece) {
 
 bool GameInstance::havePiece(Position pos) {
     return board.havePiece(pos);
+}
+
+
+void ScrabbleInstance::accept(DrawLetterAction&) {
+        drawLetter();
+}
+
+void ScrabbleInstance::drawLetter() {
+        cout << "implem drawLetter bro !! ";
 }

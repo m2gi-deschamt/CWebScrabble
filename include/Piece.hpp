@@ -1,7 +1,7 @@
 #ifndef PIECE_HPP
 #define PIECE_HPP
 
-#include "string"
+#include <string>
 
 class Piece {
 private:
@@ -18,15 +18,13 @@ public:
     Pawn() : Piece("Pawn") {}
 };
 
-
 class Letter : public Piece {
-    private :
-        std::string name = "Letter"; 
-        char letter;
-    public :
-        Letter() : letter(' ') {}
-        Letter(char ch) : letter(ch) {} 
-        char getLetter(){return letter;};
+private:
+    char letter;
+public:
+    Letter() : Piece("Letter"), letter(' ') {}
+    Letter(char ch) : Piece("Letter"), letter(ch) {}
+    char getLetter() const { return letter; }
 };
 
 

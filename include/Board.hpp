@@ -43,21 +43,20 @@ private:
     int rows;
     int columns;
 
-    void movePiece(const Position& from, const Position& to); 
-    bool havePiece(const Position& position);
-    void placePiece(const Position& position, std::unique_ptr<Piece> piece);
-    Piece* getPiece(const Position& position);
-    
-    Cell& getCell(const Position& position);
-    Cell& cellAt(int row, int col); 
-    const Cell& cellAt(int row, int col) const;
-     
-    int getRows() const { return rows; } 
-    int getCols() const { return columns; }
-    void display() const;
-    Board(int rows, int columns);
-
-    friend class GameInstance;
+    public : 
+        Board(int rows, int columns);
+        void movePiece(const Position& from, const Position& to); 
+        bool havePiece(const Position& position);
+        void placePiece(const Position& position, std::unique_ptr<Piece> piece);
+        Piece* getPiece(const Position& position);
+        
+        Cell& getCell(const Position& position);
+        Cell& cellAt(int row, int col); 
+        const Cell& cellAt(int row, int col) const;
+        
+        int getRows() const { return rows; } 
+        int getCols() const { return columns; }
+        void display() const;    
 };
 
 #endif
