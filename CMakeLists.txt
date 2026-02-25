@@ -45,11 +45,15 @@ aux_source_directory(src/controllers CTL_SRC)
 aux_source_directory(src/filters FILTER_SRC)
 aux_source_directory(src/plugins PLUGIN_SRC)
 aux_source_directory(src/models MODEL_SRC)
+aux_source_directory(src/Game GAME_SRC)
+aux_source_directory(src/GameInstance GAMEINSTANCE_SRC)
 aux_source_directory(src SRC_SRC)
 
 
 add_library(game
     ${SRC_SRC}
+    ${GAMEINSTANCE_SRC}
+    ${GAME_SRC}
 )
 
 target_include_directories(game PUBLIC include)

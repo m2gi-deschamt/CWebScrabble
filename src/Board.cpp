@@ -1,6 +1,7 @@
 #include "Board.hpp"
 #include <cassert>
 
+Cell::Cell() : piece(nullptr) {}
 
 Board::Board(int r, int c) : rows(r), columns(c), cells(r) {
     for (auto& row : cells) {

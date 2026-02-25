@@ -1,5 +1,9 @@
 #include "Player.hpp"
 
+
+Player::Player() = default;
+Player::~Player() = default;
+
 Player::Player(string name, int age, Gender gender) {
     this->name = name;
     this->age = age;
@@ -23,4 +27,9 @@ int Player::getAge() const {
 
 Gender Player::getGender() const {
     return gender;
+}
+
+// TODO !!!!!
+bool Player::operator<(const Player& other) const {
+    return this->name != other.name;
 }

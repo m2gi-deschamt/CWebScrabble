@@ -1,11 +1,11 @@
-#ifndef ACTION_HPP
-#define ACTION_HPP
+#pragma once
 
-#include "Game.hpp"
+class GameInstance;
 
 class Action {
 public:
-    virtual ~Action() = default;
+    Action();
+    virtual ~Action();
     virtual void execute(GameInstance& instance) = 0;
 };
 
@@ -13,5 +13,3 @@ class DrawLetterAction : public Action {
 public:
     void execute(GameInstance& instance) override;
 };
-
-#endif

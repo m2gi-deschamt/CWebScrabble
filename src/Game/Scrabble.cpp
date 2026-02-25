@@ -1,5 +1,9 @@
 #include "Action.hpp"
-#include "Game.hpp"
+#include "Game/Scrabble.hpp"
+
+Scrabble::Scrabble() = default;
+
+Scrabble::~Scrabble() = default;
 
 bool Scrabble::isMoveValid(const Action& action, const Board& board) const {
     return true;
@@ -8,7 +12,7 @@ bool Scrabble::isMoveValid(const Action& action, const Board& board) const {
 bool Scrabble::checkVictory(const Board& board) const {
     return false;
 }
-/*
+
 std::array<Letter, 102> Scrabble::initLetters() {
             std::string allLetters = 
             "AAAAAAAAA"  // 9 A
@@ -45,4 +49,3 @@ std::array<Letter, 102> Scrabble::initLetters() {
         }
         return temp;
     }
-*/

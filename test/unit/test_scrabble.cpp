@@ -1,7 +1,8 @@
 #include <gtest/gtest.h>
 #include "Board.hpp"
 #include "Piece.hpp"
-#include "Game.hpp"
+#include "Game/Scrabble.hpp"
+#include "GameInstance/GameInstance.hpp"
 
 #include <memory>
 
@@ -11,12 +12,13 @@ using namespace std;
 class ScrabbleTest : public ::testing::Test {
 protected:
     ScrabbleInstance game;
+    Position position11 = {1,1};
 
     ScrabbleTest() : game(std::make_unique<Scrabble>()) {}
 
     void SetUp() override {
         std::unique_ptr<Piece> letter = std::make_unique<Letter>('a');
-        game.placePiece({1,1}, std::move(letter));
+        game.placePiece(position11, std::move(letter));
     }
 
     void TearDown() override {
@@ -25,13 +27,14 @@ protected:
 };
 
 TEST_F(ScrabbleTest, HavePieceAt11) {
-    EXPECT_TRUE(game.havePiece({1,1}));
+    EXPECT_TRUE(game.havePiece(position11));
 }
 
 TEST_F(ScrabbleTest, PieceValueEqualToA) {
-    EXPECT_TRUE(game.havePiece({1,1}));
+    EXPECT_TRUE(game.havePiece(position11));
 }
 
 TEST_F(ScrabbleTest, NoPieceAt12) {
-    EXPECT_FALSE(game.havePiece({1,2}));
+    Position position12 = {1,2};
+    EXPECT_FALSE(game.havePiece(position12));
 }

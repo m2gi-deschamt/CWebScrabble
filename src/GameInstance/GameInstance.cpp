@@ -1,7 +1,13 @@
-#include "Game.hpp"
+#include "GameInstance/GameInstance.hpp"
+#include "Game/Game.hpp"
 
-#include <iostream>
+#include <memory>
 
+GameInstance::GameInstance(std::unique_ptr<Game> g) 
+        : game(std::move(g)),
+          board(game->getRows(), game->getCols()) {}
+
+GameInstance::~GameInstance() = default;
 
 void GameInstance::addPlayer(const Player &player) {
     if (players.size() < game->getMaxPlayer()) {
@@ -29,14 +35,17 @@ const set<Player>& GameInstance::getPlayers() const {
     return players;
 }
 
-void GameInstance::placePiece(Position position, std::unique_ptr<Piece> piece) {
+void GameInstance::placePiece(Position& position, std::unique_ptr<Piece> piece) {
     board.placePiece(position, std::move(piece));
 }
 
-bool GameInstance::havePiece(Position pos) {
+bool GameInstance::havePiece(Position& pos) {
     return board.havePiece(pos);
 }
 
+
+ScrabbleInstance::ScrabbleInstance(std::unique_ptr<Scrabble> g)
+    : GameInstance(std::unique_ptr<Game>(std::move(g))) {};
 
 void ScrabbleInstance::accept(DrawLetterAction&) {
         drawLetter();

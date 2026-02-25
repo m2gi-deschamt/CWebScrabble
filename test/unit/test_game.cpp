@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
-#include "Game.hpp"
+#include "Game/Scrabble.hpp"
+#include "GameInstance/GameInstance.hpp"
 #include "Player.hpp"
 
 using namespace std;

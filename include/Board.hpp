@@ -1,5 +1,4 @@
-#ifndef BOARD_HPP
-#define BOARD_HPP
+#pragma once
 
 #include <memory>
 #include <vector>
@@ -20,7 +19,7 @@ class Cell {
 private:
     std::unique_ptr<Piece> piece;
 
-    Cell() : piece(nullptr) {}
+    Cell();
 
     std::unique_ptr<Piece> takePiece() {
         return std::move(piece);
@@ -58,5 +57,3 @@ private:
         int getCols() const { return columns; }
         void display() const;    
 };
-
-#endif
