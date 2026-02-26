@@ -12,7 +12,7 @@ GameInstance::GameInstance(std::unique_ptr<Game> g)
 
 GameInstance::~GameInstance() = default;
 
-void GameInstance::addPlayer(const Player &player) {
+void GameInstance::addPlayer(const PlayerInstance &player) {
     if (players.size() < game->getMaxPlayer()) {
         players.insert(player);
     } else {
@@ -34,7 +34,7 @@ void GameInstance::display() {
     cout << "Game instance values : \n game : " << game->getName() << "\n";
 };
 
-const set<Player>& GameInstance::getPlayers() const {
+const set<PlayerInstance>& GameInstance::getPlayers() const {
     return players;
 }
 
@@ -44,4 +44,8 @@ void GameInstance::placePiece(Position& position, std::unique_ptr<Piece> piece) 
 
 bool GameInstance::havePiece(Position& pos) {
     return board.havePiece(pos);
+}
+
+void GameInstance::drawLetter(PlayerInstance& player) {
+    throw std::logic_error("Not implemented in this GameInstance");
 }

@@ -16,7 +16,7 @@ using namespace std;
 class GameInstance {
 protected:
     std::unique_ptr<Game> game;
-    set<Player> players;
+    set<PlayerInstance> players;
     Board board;
 
 public:
@@ -28,12 +28,12 @@ public:
     void play();
     void pause();
 
-    void addPlayer(const Player &player);
-    const set<Player>& getPlayers() const;
+    void addPlayer(const PlayerInstance &player);
+    const set<PlayerInstance>& getPlayers() const;
 
     void placePiece(Position &position, std::unique_ptr<Piece> piece);
     bool havePiece(Position& pos);
     void display();
 
-    virtual void accept(DrawLetterAction&) = 0;
+    virtual void drawLetter(PlayerInstance& player);
 };

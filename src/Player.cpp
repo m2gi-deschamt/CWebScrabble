@@ -1,5 +1,5 @@
 #include "Player.hpp"
-
+#include "Action.hpp"
 
 Player::Player() = default;
 Player::~Player() = default;
@@ -32,4 +32,18 @@ Gender Player::getGender() const {
 // TODO !!!!!
 bool Player::operator<(const Player& other) const {
     return this->name != other.name;
+}
+
+PlayerInstance::PlayerInstance() = default;
+PlayerInstance::~PlayerInstance() = default;
+
+PlayerInstance::PlayerInstance(Player& p): player(&p){};
+
+// TODO !!!!!
+bool PlayerInstance::operator<(const PlayerInstance& other) const {
+    return this->player->getName() != other.player->getName();
+}
+
+std::string PlayerInstance::getName() {
+    return "";
 }

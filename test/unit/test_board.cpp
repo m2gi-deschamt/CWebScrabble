@@ -3,6 +3,7 @@
 #include "Piece.hpp"
 #include "game/Scrabble.hpp"
 #include "gameInstance/ScrabbleInstance.hpp"
+#include "Player.hpp"
 
 using namespace std;
 
@@ -16,7 +17,6 @@ protected:
     GameInstanceTest() : game(std::make_unique<Scrabble>()) {}
 
     void SetUp() override {
-        
         game.placePiece(position11, std::make_unique<Pawn>());
     }
 
