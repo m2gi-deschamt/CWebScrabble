@@ -20,7 +20,7 @@ public:
     virtual ~ScrabbleInstance();
     
     void setUp();
-    void drawLetter(PlayerInstance& player) override;
+    void drawLetter(PlayerInstance& player);
 
     PlayerSet getPlayerSet(PlayerId& id);
 };

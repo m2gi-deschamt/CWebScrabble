@@ -38,13 +38,13 @@ protected:
 
 TEST_F(ScrabbleTest, setUp) {
     
-    game.addPlayer(player1);
-    game.addPlayer(player2);
+    game.addPlayer(player1Instance);
+    game.addPlayer(player2Instance);
     game.setUp();
      
-    PlayerId pid = player1.getId();
+    PlayerId pid = player1Instance.getId();
     EXPECT_TRUE(pid.value == 1);
-    PlayerId pid2 = player2.getId();
+    PlayerId pid2 = player2Instance.getId();
     EXPECT_TRUE(pid2.value == 2);
 
     PlayerSet playerData = game.getPlayerSet(pid);
@@ -57,8 +57,8 @@ TEST_F(ScrabbleTest, setUp) {
     EXPECT_TRUE(letter == 'a');
     EXPECT_TRUE(len == 7);
 
-    //DrawLetterAction action;
-    //action.execute(game,player1Instance);
+    DrawLetterAction action;
+    action.execute(game, player1Instance);
 }
 
 /*
