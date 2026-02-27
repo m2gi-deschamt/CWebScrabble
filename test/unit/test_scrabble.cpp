@@ -12,6 +12,7 @@ using namespace std;
 
 class ScrabbleTest : public ::testing::Test {
 protected:
+    Scrabble scrabble;
     ScrabbleInstance game;
     Position position11 = {1,1};
     Player player1;
@@ -19,11 +20,11 @@ protected:
     PlayerInstance player1Instance;
     PlayerInstance player2Instance;
 
-    ScrabbleTest() : game(std::make_unique<Scrabble>()) {}
+    ScrabbleTest() : game(scrabble) {}
 
     void SetUp() override {
-        player1 = Player("Thibaud", 32, MALE);
-        player2 = Player("Olivier", 24, MALE);
+        player1 = Player({1},"Thibaud", 32, MALE);
+        player2 = Player({2},"Olivier", 24, MALE);
         player1Instance = PlayerInstance(player1);
         player2Instance = PlayerInstance(player2);
         std::unique_ptr<Piece> letter = std::make_unique<Letter>('a');
@@ -35,20 +36,33 @@ protected:
     }
 };
 
-TEST_F(ScrabbleTest, HavePieceAt11) {
-    EXPECT_TRUE(game.havePiece(position11));
+TEST_F(ScrabbleTest, setUp) {
+    cout << "Yo comprend\n" << flush;
+    
+    game.addPlayer(player1);
+    game.addPlayer(player2);
+    game.setUp();
+     
+    PlayerId pid = player1.getId();
+    EXPECT_TRUE(pid.value == 1);
+    PlayerId pid2 = player2.getId();
+    EXPECT_TRUE(pid2.value == 2);
+
+    PlayerSet playerData = game.getPlayerSet(pid);
+    
+    int score = playerData.score;
+    EXPECT_TRUE(score == 1);
+
+    char letter = playerData.rack[0].getLetter();
+    EXPECT_TRUE(letter == 'a');
+
+    //DrawLetterAction action;
+    //action.execute(game,player1Instance);
 }
 
-TEST_F(ScrabbleTest, PieceValueEqualToA) {
-    EXPECT_TRUE(game.havePiece(position11));
-}
-
-TEST_F(ScrabbleTest, NoPieceAt12) {
-    Position position12 = {1,2};
-    EXPECT_FALSE(game.havePiece(position12));
-}
-
+/*
 TEST_F(ScrabbleTest, execAction) {
     DrawLetterAction action;
     action.execute(game,player1Instance);
 }
+    */

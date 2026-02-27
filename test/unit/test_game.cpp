@@ -8,6 +8,7 @@ using namespace std;
 
 class GameTest : public ::testing::Test {
 protected:
+    Scrabble scrabble;
     ScrabbleInstance game;
     Position position11;
     Player player1;
@@ -15,12 +16,12 @@ protected:
     PlayerInstance player1Instance;
     PlayerInstance player2Instance;
 
-    GameTest() : game(std::make_unique<Scrabble>()) {}
+    GameTest() : game(scrabble) {}
 
     void SetUp() override {
         position11 = {1,1};
-        player1 = Player("Thibaud", 32, MALE);
-        player2 = Player("Olivier", 24, MALE);
+        player1 = Player({1}, "Thibaud", 32, MALE);
+        player2 = Player({2}, "Olivier", 24, MALE);
         player1Instance = PlayerInstance(player1);
         player2Instance = PlayerInstance(player2);
         std::unique_ptr<Piece> letter = std::make_unique<Letter>('a');
@@ -35,21 +36,21 @@ protected:
 TEST_F(GameTest, AddPlayers) {
     
     Scrabble scrabble;
-    ScrabbleInstance game(std::make_unique<Scrabble>());
+    ScrabbleInstance game(scrabble);
     EXPECT_TRUE(game.getPlayers().size() == 0);
     game.addPlayer(player1Instance);
     EXPECT_TRUE(game.getPlayers().size() == 1);
 }
 
 TEST_F(GameTest, PLAYERMAX) {
-    Player player3("Mylene", 28, FEMALE);
-    Player player4("Marie", 18, FEMALE);
-    Player player5("Damien", 42, MALE);
+    Player player3({3}, "Mylene", 28, FEMALE);
+    Player player4({4}, "Marie", 18, FEMALE);
+    Player player5({5}, "Damien", 42, MALE);
     PlayerInstance player3Instance(player3);
     PlayerInstance player4Instance(player4);
     PlayerInstance player5Instance(player5);
     Scrabble scrabble;
-    ScrabbleInstance game(std::make_unique<Scrabble>());
+    ScrabbleInstance game(scrabble);
     game.addPlayer(player1);
     game.addPlayer(player2);
     EXPECT_TRUE(game.getPlayers().size() == 2);

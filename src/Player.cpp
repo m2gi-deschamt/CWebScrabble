@@ -4,7 +4,8 @@
 Player::Player() = default;
 Player::~Player() = default;
 
-Player::Player(string name, int age, Gender gender) {
+Player::Player(PlayerId id, string name, int age, Gender gender) {
+    this->id = id;
     this->name = name;
     this->age = age;
     this->gender = gender;
@@ -15,6 +16,10 @@ void Player::display() {
     if (gender == MALE) cout << "Male";
     else cout << "Female";
     cout << endl;
+}
+
+PlayerId Player::getId() const{
+    return id;
 }
 
 std::string Player::getName() const {
@@ -28,6 +33,7 @@ int Player::getAge() const {
 Gender Player::getGender() const {
     return gender;
 }
+
 
 // TODO !!!!!
 bool Player::operator<(const Player& other) const {
@@ -44,6 +50,10 @@ bool PlayerInstance::operator<(const PlayerInstance& other) const {
     return this->player->getName() != other.player->getName();
 }
 
+PlayerId PlayerInstance::getId() const{
+    return player->getId();
+}
+
 std::string PlayerInstance::getName() {
-    return "";
+    return player->getName();
 }

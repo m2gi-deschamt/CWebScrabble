@@ -1,20 +1,26 @@
 #pragma once
 #include "GameInstance.hpp"
 #include "Piece.hpp"
+#include "Player.hpp"
+#include "game/Scrabble.hpp"
 
 #include <memory>
 #include <unordered_map>
 
-struct PlayerTools {
-    std::vector<Letter> letters;
-    int score;
+struct PlayerSet {
+    std::vector<Letter> rack;
+    int score = 0;
 };
 
 class ScrabbleInstance : public GameInstance {
-std::unordered_map<PlayerInstance*, PlayerTools> players;
+std::vector<Letter> stack;
+std::unordered_map<PlayerId, PlayerSet> scrabbleState;
 public:
-    ScrabbleInstance();
-    ScrabbleInstance(std::unique_ptr<Scrabble> g);
+    ScrabbleInstance(Scrabble& scrabble);
     virtual ~ScrabbleInstance();
+    
+    void setUp();
     void drawLetter(PlayerInstance& player) override;
+
+    PlayerSet getPlayerSet(PlayerId& id);
 };

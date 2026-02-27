@@ -14,7 +14,7 @@ protected:
     ScrabbleInstance game;
     Position position11 = {1,1};
 
-    GameInstanceTest() : game(std::make_unique<Scrabble>()) {}
+    GameInstanceTest() : game(scrabble) {}
 
     void SetUp() override {
         game.placePiece(position11, std::make_unique<Pawn>());

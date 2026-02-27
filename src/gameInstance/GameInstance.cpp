@@ -3,18 +3,16 @@
 
 #include <memory>
 
-
-GameInstance::GameInstance() = default;
-
-GameInstance::GameInstance(std::unique_ptr<Game> g) 
-        : game(std::move(g)),
-          board(game->getRows(), game->getCols()) {}
+GameInstance::GameInstance(Game& g) 
+        : game(g),
+          board(game.getRows(), game.getCols()),
+          players({}) {}
 
 GameInstance::~GameInstance() = default;
 
 void GameInstance::addPlayer(const PlayerInstance &player) {
-    if (players.size() < game->getMaxPlayer()) {
-        players.insert(player);
+    if (players.size() < game.getMaxPlayer()) {
+        players.push_back(player);
     } else {
         cout << "add new player to this instance is not possible";
     }
@@ -31,10 +29,10 @@ void GameInstance::pause() {
 }
 
 void GameInstance::display() {
-    cout << "Game instance values : \n game : " << game->getName() << "\n";
+    cout << "Game instance values : \n game : " << game.getName() << "\n";
 };
 
-const set<PlayerInstance>& GameInstance::getPlayers() const {
+const std::vector<PlayerInstance>& GameInstance::getPlayers() const {
     return players;
 }
 

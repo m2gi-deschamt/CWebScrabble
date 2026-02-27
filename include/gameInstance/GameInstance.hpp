@@ -6,30 +6,29 @@
 #include "game/Scrabble.hpp"
 #include "Action.hpp"
 
-#include <array>
 #include <string>
-#include <set>
+#include <vector>
 #include <memory>
 
 using namespace std;
 
+
 class GameInstance {
 protected:
-    std::unique_ptr<Game> game;
-    set<PlayerInstance> players;
+    Game &game;
+    std::vector<PlayerInstance> players;
     Board board;
 
 public:
-    GameInstance();
-    GameInstance(std::unique_ptr<Game> g);
     virtual ~GameInstance();
+    GameInstance(Game& g);
 
     void start();
     void play();
     void pause();
 
     void addPlayer(const PlayerInstance &player);
-    const set<PlayerInstance>& getPlayers() const;
+    const vector<PlayerInstance>& getPlayers() const;
 
     void placePiece(Position &position, std::unique_ptr<Piece> piece);
     bool havePiece(Position& pos);
