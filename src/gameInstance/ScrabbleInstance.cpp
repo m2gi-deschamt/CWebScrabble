@@ -8,7 +8,6 @@ ScrabbleInstance::ScrabbleInstance(Scrabble& scrabble)
     : GameInstance(scrabble), stack(scrabble.getLettersVectors())
 {};
 
-
 void ScrabbleInstance::setUp() {
     for(size_t i = 0; i < players.size(); i++) {
         std::vector<Letter> rack;
@@ -25,7 +24,6 @@ void ScrabbleInstance::drawLetter(PlayerInstance& player) {
 
 
 PlayerSet ScrabbleInstance::getPlayerSet(PlayerId& id){
-        cout << "\n enter !!! \n" << flush;
         return scrabbleState[id];
 }
 

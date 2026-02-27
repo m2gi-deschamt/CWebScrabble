@@ -26,12 +26,7 @@ bool Scrabble::checkVictory(const Board& board) const {
 
 // Retourne un vector safe
 std::vector<Letter> Scrabble::getLettersVectors() {
-    cout << "getLettersVectors() start" << endl;
-
-    // Création du vector à partir de l'array letters
     std::vector<Letter> lettersVector(letters.begin(), letters.end());
-
-    cout << "getLettersVectors() done, size = " << lettersVector.size() << endl;
     return lettersVector;
 }
 

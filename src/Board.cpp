@@ -3,8 +3,6 @@
 
 Cell::Cell() : piece(nullptr) {}
 
-
-Board::Board() = default;
 Board::~Board() = default;
 
 

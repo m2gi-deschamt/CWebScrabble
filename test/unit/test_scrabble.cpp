@@ -37,7 +37,6 @@ protected:
 };
 
 TEST_F(ScrabbleTest, setUp) {
-    cout << "Yo comprend\n" << flush;
     
     game.addPlayer(player1);
     game.addPlayer(player2);
@@ -54,7 +53,9 @@ TEST_F(ScrabbleTest, setUp) {
     EXPECT_TRUE(score == 1);
 
     char letter = playerData.rack[0].getLetter();
+    int len = playerData.rack.size();
     EXPECT_TRUE(letter == 'a');
+    EXPECT_TRUE(len == 7);
 
     //DrawLetterAction action;
     //action.execute(game,player1Instance);

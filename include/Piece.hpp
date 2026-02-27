@@ -7,7 +7,6 @@ private:
     std::string name;
 
 public:
-    Piece();
     Piece(const std::string& n);
     std::string getName();
 };
