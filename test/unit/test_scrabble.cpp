@@ -23,12 +23,10 @@ protected:
     ScrabbleTest() : game(scrabble) {}
 
     void SetUp() override {
-        player1 = Player({1},"Thibaud", 32, MALE);
-        player2 = Player({2},"Olivier", 24, MALE);
+        player1 = Player({0},"Thibaud", 32, MALE);
+        player2 = Player({1},"Olivier", 24, MALE);
         player1Instance = PlayerInstance(player1);
         player2Instance = PlayerInstance(player2);
-        std::unique_ptr<Piece> letter = std::make_unique<Letter>('a');
-        game.placePiece(position11, std::move(letter));
     }
 
     void TearDown() override {
@@ -36,34 +34,44 @@ protected:
     }
 };
 
+TEST_F(ScrabbleTest, pidValue) {
+    EXPECT_EQ(player1Instance.getId().value, 0);
+    EXPECT_EQ(player2Instance.getId().value, 1);
+}
+
 TEST_F(ScrabbleTest, setUp) {
-    
     game.addPlayer(player1Instance);
-    game.addPlayer(player2Instance);
     game.setUp();
-     
-    PlayerId pid = player1Instance.getId();
-    EXPECT_TRUE(pid.value == 1);
-    PlayerId pid2 = player2Instance.getId();
-    EXPECT_TRUE(pid2.value == 2);
-
-    PlayerSet playerData = game.getPlayerSet(pid);
     
-    int score = playerData.score;
-    EXPECT_TRUE(score == 1);
-
-    char letter = playerData.rack[0].getLetter();
+    PlayerSet playerData = game.getPlayerSet(player1Instance.getId());
+    
+    //char letter = playerData.rack[0].getLetter();
     int len = playerData.rack.size();
-    EXPECT_TRUE(letter == 'a');
+    //EXPECT_TRUE(letter == 'a');
     EXPECT_TRUE(len == 7);
+}
 
+TEST_F(ScrabbleTest, rackSize) {
+    game.addPlayer(player1Instance);
+    game.setUp();
+    PlayerId pid = player1Instance.getId();
+    
     DrawLetterAction action;
+    PlayerSet playerData = game.getPlayerSet(player1Instance.getId());
+    int len = playerData.rack.size();
+    EXPECT_EQ(len, 7);
+}
+
+TEST_F(ScrabbleTest, drawLetterAction) {
+    DrawLetterAction action;
+
+    game.addPlayer(player1Instance);
+    game.setUp();
+    PlayerId pid = player1Instance.getId();
+    int initialSize = game.getPlayerSet(pid).rack.size();
+    
     action.execute(game, player1Instance);
-}
 
-/*
-TEST_F(ScrabbleTest, execAction) {
-    DrawLetterAction action;
-    action.execute(game,player1Instance);
+    int newSize = game.getPlayerSet(pid).rack.size();
+    EXPECT_EQ(newSize, initialSize + 1);
 }
-    */

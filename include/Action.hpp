@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Piece.hpp"
+#include "Board.hpp"
 class GameInstance;
 class PlayerInstance;
 
@@ -15,4 +17,15 @@ public:
     DrawLetterAction();
     virtual ~DrawLetterAction();
     void execute(GameInstance& instance, PlayerInstance& player) override;
+};
+
+class AddLetterAction : public Action {
+    private:
+        Letter letter;
+        Position position;
+
+    public:
+        AddLetterAction(Letter& letter, Position& position);
+        virtual ~AddLetterAction();
+        void execute(GameInstance& instance, PlayerInstance& player) override;
 };

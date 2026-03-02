@@ -34,5 +34,6 @@ public:
     bool havePiece(Position& pos);
     void display();
 
-    virtual void drawLetter(PlayerInstance& player);
+    virtual void drawLetter(const PlayerInstance& player);
+    virtual void addLetter(PlayerInstance& player, Letter& letter, Position& pos);
 };

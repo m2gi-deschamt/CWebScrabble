@@ -21,6 +21,7 @@ public:
     
     void setUp();
     void drawLetter(const PlayerInstance& player);
+    void addLetter(PlayerInstance& player, Letter& letter, Position& pos);
 
     PlayerSet getPlayerSet(const PlayerId& id) const;
 };

@@ -44,6 +44,12 @@ bool GameInstance::havePiece(Position& pos) {
     return board.havePiece(pos);
 }
 
-void GameInstance::drawLetter(PlayerInstance& player) {
-    throw std::logic_error("Not implemented in this GameInstance");
+void GameInstance::drawLetter(const PlayerInstance& player) {
+    std::string error = "draw letter not implemented in this " + this->game.getName() + " GameInstance";
+    throw std::logic_error(error);
+}
+
+void GameInstance::addLetter(PlayerInstance& player, Letter& letter, Position& pos) {
+    std::string error = "draw letter not implemented in this " + this->game.getName() + " GameInstance";
+    throw std::logic_error(error);
 }
