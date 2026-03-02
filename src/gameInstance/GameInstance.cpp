@@ -3,7 +3,7 @@
 
 #include <memory>
 
-GameInstance::GameInstance(Game& g) 
+GameInstance::GameInstance(const Game& g) 
         : game(g),
           board(game.getRows(), game.getCols()),
           players({}) {}

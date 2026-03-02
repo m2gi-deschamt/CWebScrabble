@@ -15,13 +15,13 @@ using namespace std;
 
 class GameInstance {
 protected:
-    Game &game;
+    const Game &game;
     std::vector<PlayerInstance> players;
     Board board;
 
 public:
     virtual ~GameInstance();
-    GameInstance(Game& g);
+    GameInstance(const Game& g);
 
     void start();
     void play();

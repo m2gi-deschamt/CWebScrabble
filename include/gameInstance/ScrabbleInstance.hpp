@@ -16,11 +16,11 @@ class ScrabbleInstance : public GameInstance {
 std::vector<Letter> stack;
 std::unordered_map<PlayerId, PlayerSet> scrabbleState;
 public:
-    ScrabbleInstance(Scrabble& scrabble);
+    ScrabbleInstance(const Scrabble& scrabble);
     virtual ~ScrabbleInstance();
     
     void setUp();
-    void drawLetter(PlayerInstance& player);
+    void drawLetter(const PlayerInstance& player);
 
-    PlayerSet getPlayerSet(PlayerId& id);
+    PlayerSet getPlayerSet(const PlayerId& id) const;
 };

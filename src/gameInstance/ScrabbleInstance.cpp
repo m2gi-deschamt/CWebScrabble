@@ -4,7 +4,7 @@ using namespace std;
 
 ScrabbleInstance::~ScrabbleInstance() = default;
 
-ScrabbleInstance::ScrabbleInstance(Scrabble& scrabble)
+ScrabbleInstance::ScrabbleInstance(const Scrabble& scrabble)
     : GameInstance(scrabble), stack(scrabble.getLettersVectors())
 {};
 
@@ -18,13 +18,13 @@ void ScrabbleInstance::setUp() {
     };
 }
 
-void ScrabbleInstance::drawLetter(PlayerInstance& player) {
+void ScrabbleInstance::drawLetter(const PlayerInstance& player) {
         cout << "\n Draw letter brooo !\n";
 };
 
 
-PlayerSet ScrabbleInstance::getPlayerSet(PlayerId& id){
-        return scrabbleState[id];
+PlayerSet ScrabbleInstance::getPlayerSet(const PlayerId& id) const {
+        return scrabbleState.at(id);
 }
 
 
