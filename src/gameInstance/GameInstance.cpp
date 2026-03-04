@@ -36,6 +36,10 @@ const std::vector<PlayerInstance>& GameInstance::getPlayers() const {
     return players;
 }
 
+shared_ptr<Piece> GameInstance::getPiece(Position &position) {
+        return board.getPiece(position);
+    }
+
 void GameInstance::placePiece(Position& position, std::shared_ptr<Piece> piece) {
     board.placePiece(position, piece);
 }

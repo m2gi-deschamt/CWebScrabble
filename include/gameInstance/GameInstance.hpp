@@ -29,9 +29,8 @@ public:
     void addPlayer(const PlayerInstance &player);
     const vector<PlayerInstance>& getPlayers() const;
 
-    shared_ptr<Piece> getPiece(Position &position) {
-        return board.getPiece(position);
-    }
+    shared_ptr<Piece> getPiece(Position &position);
+
     void placePiece(Position &position, std::shared_ptr<Piece> piece);
     bool havePiece(Position& pos);
     void display();
