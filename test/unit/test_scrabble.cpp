@@ -75,3 +75,13 @@ TEST_F(ScrabbleTest, drawLetterAction) {
     int newSize = game.getPlayerSet(pid).rack.size();
     EXPECT_EQ(newSize, initialSize + 1);
 }
+
+TEST_F(ScrabbleTest, addLetterAction) {
+    AddLetterAction action = AddLetterAction(std::optional<Letter>('a'), position11);
+    Position position12 = {1,2};
+    game.addPlayer(player1Instance);
+    game.setUp();    
+    action.execute(game, player1Instance);
+    EXPECT_EQ(game.havePiece(position11), true);
+    EXPECT_EQ(game.havePiece(position12), false);
+}
