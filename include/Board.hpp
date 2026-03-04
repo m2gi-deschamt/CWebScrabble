@@ -1,7 +1,6 @@
 #pragma once
 
 #include <memory>
-#include <optional>
 #include <vector>
 #include <string>
 #include <iostream>
@@ -18,21 +17,26 @@ struct Position {
 
 class Cell {
 private:
-    std::optional<Piece> piece;
+    std::shared_ptr<Piece> piece;
 
     Cell();
 
-    std::optional<Piece> takePiece() {
-        return piece;
+    std::shared_ptr<Piece> takePiece() {
+        auto tmp = piece;
+        piece.reset();
+        return tmp;
     }
 
-    bool setPiece(std::optional<Piece> p) { piece = p; return true;}
+    bool setPiece(std::shared_ptr<Piece> p) {
+        piece = p;
+        return true;
+    }
 
     void removePiece() { piece.reset(); }
 
-    bool isEmpty() const { return !piece.has_value(); }
+    bool isEmpty() const { return piece == nullptr; }
 
-    Piece getPiece() const { return piece.value(); }
+    std::shared_ptr<Piece> getPiece() const { return piece; }
 
     friend class Board;
 };
@@ -43,19 +47,20 @@ private:
     int rows;
     int columns;
 
-    public :
-        ~Board();
-        Board(int rows, int columns);
-        void movePiece(const Position& from, const Position& to); 
-        bool havePiece(const Position& position);
-        void placePiece(const Position& position, std::optional<Piece> piece);
-        Piece getPiece(const Position& position);
-        
-        Cell& getCell(const Position& position);
-        Cell& cellAt(int row, int col); 
-        const Cell& cellAt(int row, int col) const;
-        
-        int getRows() const { return rows; } 
-        int getCols() const { return columns; }
-        void display() const;    
+public:
+    ~Board();
+    Board(int rows, int columns);
+
+    void movePiece(const Position& from, const Position& to); 
+    bool havePiece(const Position& position);
+    void placePiece(const Position& position, std::shared_ptr<Piece> piece);
+    std::shared_ptr<Piece> getPiece(const Position& position);
+    
+    Cell& getCell(const Position& position);
+    Cell& cellAt(int row, int col); 
+    const Cell& cellAt(int row, int col) const;
+    
+    int getRows() const { return rows; } 
+    int getCols() const { return columns; }
+    void display() const;    
 };

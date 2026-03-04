@@ -24,7 +24,7 @@ protected:
         player2 = Player({2}, "Olivier", 24, MALE);
         player1Instance = PlayerInstance(player1);
         player2Instance = PlayerInstance(player2);
-        game.placePiece(position11, std::optional<Letter>('a'));
+        game.placePiece(position11, std::make_shared<Letter>('a'));
     }
 
     void TearDown() override {

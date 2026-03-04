@@ -15,7 +15,7 @@ void DrawLetterAction::execute(GameInstance& instance, PlayerInstance& player) {
         instance.drawLetter(player);
 }
 
-AddLetterAction::AddLetterAction(std::optional<Letter> letter, Position& position):
+AddLetterAction::AddLetterAction(std::shared_ptr<Letter> letter, Position& position):
 letter(letter), position(position){};
 
 AddLetterAction::~AddLetterAction() = default;

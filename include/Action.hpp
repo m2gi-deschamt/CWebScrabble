@@ -23,11 +23,11 @@ public:
 
 class AddLetterAction : public Action {
     private:
-        std::optional<Letter> letter;
+        std::shared_ptr<Letter> letter;
         Position position;
 
     public:
-        AddLetterAction(std::optional<Letter> letter, Position& position);
+        AddLetterAction(std::shared_ptr<Letter> letter, Position& position);
         virtual ~AddLetterAction();
         void execute(GameInstance& instance, PlayerInstance& player) override;
 };

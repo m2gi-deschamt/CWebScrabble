@@ -21,7 +21,7 @@ public:
     
     void setUp();
     void drawLetter(const PlayerInstance& player);
-    void addLetter(PlayerInstance& player, std::optional<Letter> letter, Position& pos);
+    void addLetter(PlayerInstance& player, std::shared_ptr<Letter> letter, Position& pos);
 
     PlayerSet getPlayerSet(const PlayerId& id) const;
 };

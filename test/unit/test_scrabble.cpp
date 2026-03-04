@@ -77,11 +77,24 @@ TEST_F(ScrabbleTest, drawLetterAction) {
 }
 
 TEST_F(ScrabbleTest, addLetterAction) {
-    AddLetterAction action = AddLetterAction(std::optional<Letter>('a'), position11);
+    AddLetterAction action = AddLetterAction(std::make_shared<Letter>('a'), position11);
     Position position12 = {1,2};
     game.addPlayer(player1Instance);
     game.setUp();    
     action.execute(game, player1Instance);
     EXPECT_EQ(game.havePiece(position11), true);
     EXPECT_EQ(game.havePiece(position12), false);
+    
+}
+
+TEST_F(ScrabbleTest, getLetter) {
+    AddLetterAction action = AddLetterAction(std::make_shared<Letter>('a'), position11);
+    Position position12 = {1,2};
+    game.addPlayer(player1Instance);
+    game.setUp();    
+    action.execute(game, player1Instance);
+    auto piece = game.getPiece(position11);
+    auto letter = std::dynamic_pointer_cast<Letter>(piece);
+    ASSERT_NE(letter, nullptr);  // Vérifie que c'est bien une Letter
+    EXPECT_EQ(letter->getLetter(), 'a');
 }

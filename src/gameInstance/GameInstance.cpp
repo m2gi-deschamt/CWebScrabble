@@ -36,7 +36,7 @@ const std::vector<PlayerInstance>& GameInstance::getPlayers() const {
     return players;
 }
 
-void GameInstance::placePiece(Position& position, std::optional<Piece> piece) {
+void GameInstance::placePiece(Position& position, std::shared_ptr<Piece> piece) {
     board.placePiece(position, piece);
 }
 
@@ -49,7 +49,7 @@ void GameInstance::drawLetter(const PlayerInstance& player) {
     throw std::logic_error(error);
 }
 
-void GameInstance::addLetter(PlayerInstance& player, std::optional<Letter> letter, Position& pos) {
+void GameInstance::addLetter(PlayerInstance& player, std::shared_ptr<Letter> letter, Position& pos) {
     std::string error = "draw letter not implemented in this " + this->game.getName() + " GameInstance";
     throw std::logic_error(error);
 }

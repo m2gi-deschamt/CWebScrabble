@@ -8,7 +8,8 @@ private:
 
 public:
     Piece(const std::string& n);
-    std::string getName();
+    virtual ~Piece() = default;
+    const std::string& getName() const;
 };
 
 class Pawn : public Piece {
@@ -22,5 +23,5 @@ private:
 public:
     Letter();
     Letter(char ch);
-    char getLetter();
+    char getLetter() const;
 };

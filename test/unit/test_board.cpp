@@ -16,7 +16,7 @@ protected:
     GameInstanceTest() : game(scrabble) {}
 
     void SetUp() override {
-        game.placePiece(position11, std::optional<Piece>{Pawn{}});
+        game.placePiece(position11, std::make_shared<Letter>('a'));
     }
 
     void TearDown() override {

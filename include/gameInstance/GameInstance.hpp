@@ -29,10 +29,13 @@ public:
     void addPlayer(const PlayerInstance &player);
     const vector<PlayerInstance>& getPlayers() const;
 
-    void placePiece(Position &position, std::optional<Piece> piece);
+    shared_ptr<Piece> getPiece(Position &position) {
+        return board.getPiece(position);
+    }
+    void placePiece(Position &position, std::shared_ptr<Piece> piece);
     bool havePiece(Position& pos);
     void display();
 
     virtual void drawLetter(const PlayerInstance& player);
-    virtual void addLetter(PlayerInstance& player, std::optional<Letter> letter, Position& pos);
+    virtual void addLetter(PlayerInstance& player, std::shared_ptr<Letter> letter, Position& pos);
 };

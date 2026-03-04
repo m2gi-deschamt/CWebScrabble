@@ -2,46 +2,71 @@
 
 #include <iostream>
 #include <cassert>
-#include <optional>
+#include <stdexcept>
 
-Cell::Cell() : piece(std::optional<Piece>{}) {}
+Cell::Cell() : piece(nullptr) {}
 
 Board::~Board() = default;
 
-
-Board::Board(int r, int c) : rows(r), columns(c), cells(r) {
+Board::Board(int r, int c)
+    : rows(r), columns(c), cells(r)
+{
     for (auto& row : cells) {
-        row.reserve(c);               
+        row.reserve(c);
         for (int i = 0; i < c; ++i) {
-            row.emplace_back(Cell()); 
+            row.emplace_back(Cell());
         }
     }
 }
 
 Cell& Board::getCell(const Position& position) {
-    return cells[position.row][position.col];
+    return cellAt(position.row, position.col);
 }
 
-
-Piece Board::getPiece(const Position& position) {
+std::shared_ptr<Piece> Board::getPiece(const Position& position) {
     Cell& cell = getCell(position);
-    if(havePiece(position)) return cell.getPiece();
-    assert("No piece on this case");
+
+    if (!cell.piece) {
+        throw std::runtime_error("No piece on this cell");
+    }
+
+    return cell.piece;
 }
 
 bool Board::havePiece(const Position& position) {
-    return getCell(position).piece.has_value();
+    return getCell(position).piece != nullptr;
 }
 
-void Board::placePiece(const Position& position, std::optional<Piece> piece) {
-    assert(piece && "Cannot place a null piece");
+void Board::placePiece(const Position& position,
+                       std::shared_ptr<Piece> piece)
+{
+    if (!piece) {
+        throw std::invalid_argument("Cannot place a null piece");
+    }
+
     Cell& cell = getCell(position);
-    assert(cell.isEmpty() && "Cell already contains a piece");
-    cell.setPiece(piece);
+
+    if (!cell.isEmpty()) {
+        throw std::runtime_error("Cell already contains a piece");
+    }
+
+    cell.piece = piece;
 }
 
 void Board::movePiece(const Position& from, const Position& to) {
-    if(havePiece(to)) getCell(to).setPiece(cells[from.row][from.col].takePiece());
+    Cell& fromCell = getCell(from);
+    Cell& toCell   = getCell(to);
+
+    if (fromCell.isEmpty()) {
+        throw std::runtime_error("No piece to move");
+    }
+
+    if (!toCell.isEmpty()) {
+        throw std::runtime_error("Destination cell is not empty");
+    }
+
+    toCell.piece = fromCell.piece;
+    fromCell.piece = nullptr;
 }
 
 Cell& Board::cellAt(int row, int col) {
@@ -58,17 +83,15 @@ const Cell& Board::cellAt(int row, int col) const {
     return cells[row][col];
 }
 
-// Affichage du plateau
 void Board::display() const {
     for (int i = 0; i < rows; ++i) {
         for (int j = 0; j < columns; ++j) {
             if (cells[i][j].isEmpty()) {
                 std::cout << ". ";
             } else {
-                std::cout << "P "; // On affiche "P" si la cellule contient une pièce
+                std::cout << cells[i][j].piece->getName() << " ";
             }
         }
         std::cout << "\n";
     }
 }
-

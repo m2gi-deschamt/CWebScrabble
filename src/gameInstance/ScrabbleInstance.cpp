@@ -39,6 +39,6 @@ PlayerSet ScrabbleInstance::getPlayerSet(const PlayerId& id) const {
         return scrabbleState.at(id);
 }
 
-void ScrabbleInstance::addLetter(PlayerInstance& player, std::optional<Letter> letter, Position& pos) {
+void ScrabbleInstance::addLetter(PlayerInstance& player, std::shared_ptr<Letter> letter, Position& pos) {
     this->board.placePiece(pos, letter);
 }
