@@ -1,6 +1,7 @@
 #pragma once
 
 #include <memory>
+#include <optional>
 #include <vector>
 #include <string>
 #include <iostream>
@@ -17,21 +18,21 @@ struct Position {
 
 class Cell {
 private:
-    std::unique_ptr<Piece> piece;
+    std::optional<Piece> piece;
 
     Cell();
 
-    std::unique_ptr<Piece> takePiece() {
-        return std::move(piece);
+    std::optional<Piece> takePiece() {
+        return piece;
     }
 
-    bool setPiece(std::unique_ptr<Piece> p) { piece = std::move(p); return true;}
+    bool setPiece(std::optional<Piece> p) { piece = p; return true;}
 
     void removePiece() { piece.reset(); }
 
-    bool isEmpty() const { return piece == nullptr; }
+    bool isEmpty() const { return !piece.has_value(); }
 
-    Piece* getPiece() const { return piece.get(); }
+    Piece getPiece() const { return piece.value(); }
 
     friend class Board;
 };
@@ -47,8 +48,8 @@ private:
         Board(int rows, int columns);
         void movePiece(const Position& from, const Position& to); 
         bool havePiece(const Position& position);
-        void placePiece(const Position& position, std::unique_ptr<Piece> piece);
-        Piece* getPiece(const Position& position);
+        void placePiece(const Position& position, std::optional<Piece> piece);
+        Piece getPiece(const Position& position);
         
         Cell& getCell(const Position& position);
         Cell& cellAt(int row, int col); 

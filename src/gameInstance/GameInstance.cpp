@@ -1,7 +1,7 @@
 #include "gameInstance/GameInstance.hpp"
 #include "game/Game.hpp"
 
-#include <memory>
+#include <optional>
 
 GameInstance::GameInstance(const Game& g) 
         : game(g),
@@ -36,8 +36,8 @@ const std::vector<PlayerInstance>& GameInstance::getPlayers() const {
     return players;
 }
 
-void GameInstance::placePiece(Position& position, std::unique_ptr<Piece> piece) {
-    board.placePiece(position, std::move(piece));
+void GameInstance::placePiece(Position& position, std::optional<Piece> piece) {
+    board.placePiece(position, piece);
 }
 
 bool GameInstance::havePiece(Position& pos) {
@@ -49,7 +49,7 @@ void GameInstance::drawLetter(const PlayerInstance& player) {
     throw std::logic_error(error);
 }
 
-void GameInstance::addLetter(PlayerInstance& player, Letter& letter, Position& pos) {
+void GameInstance::addLetter(PlayerInstance& player, std::optional<Letter> letter, Position& pos) {
     std::string error = "draw letter not implemented in this " + this->game.getName() + " GameInstance";
     throw std::logic_error(error);
 }

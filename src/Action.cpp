@@ -4,6 +4,8 @@
 #include "Piece.hpp"
 #include "Board.hpp"
 
+#include <optional>
+
 Action::Action() = default;
 Action::~Action() = default;
 
@@ -13,7 +15,7 @@ void DrawLetterAction::execute(GameInstance& instance, PlayerInstance& player) {
         instance.drawLetter(player);
 }
 
-AddLetterAction::AddLetterAction(Letter& letter, Position& position):
+AddLetterAction::AddLetterAction(std::optional<Letter> letter, Position& position):
 letter(letter), position(position){};
 
 AddLetterAction::~AddLetterAction() = default;

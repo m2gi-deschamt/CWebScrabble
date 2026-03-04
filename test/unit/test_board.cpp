@@ -13,11 +13,10 @@ protected:
     Scrabble scrabble;
     ScrabbleInstance game;
     Position position11 = {1,1};
-
     GameInstanceTest() : game(scrabble) {}
 
     void SetUp() override {
-        game.placePiece(position11, std::make_unique<Pawn>());
+        game.placePiece(position11, std::optional<Piece>{Pawn{}});
     }
 
     void TearDown() override {
@@ -26,6 +25,7 @@ protected:
 };
 
 TEST_F(GameInstanceTest, HavePieceAt11) {
+    
     EXPECT_TRUE(game.havePiece(position11));
 }
 

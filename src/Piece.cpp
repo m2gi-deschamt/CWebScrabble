@@ -1,4 +1,5 @@
 #include "Piece.hpp"
+#include <iostream>
 
 Piece::Piece(const std::string& n) : name(n) {}
 std::string Piece::getName() {

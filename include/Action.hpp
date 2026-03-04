@@ -5,6 +5,8 @@
 class GameInstance;
 class PlayerInstance;
 
+#include <optional>
+
 class Action {
 public:
     Action();
@@ -21,11 +23,11 @@ public:
 
 class AddLetterAction : public Action {
     private:
-        Letter letter;
+        std::optional<Letter> letter;
         Position position;
 
     public:
-        AddLetterAction(Letter& letter, Position& position);
+        AddLetterAction(std::optional<Letter> letter, Position& position);
         virtual ~AddLetterAction();
         void execute(GameInstance& instance, PlayerInstance& player) override;
 };

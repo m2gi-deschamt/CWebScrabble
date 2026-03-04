@@ -4,7 +4,7 @@
 #include "Player.hpp"
 #include "game/Scrabble.hpp"
 
-#include <memory>
+#include <optional>
 #include <unordered_map>
 
 struct PlayerSet {
@@ -21,7 +21,7 @@ public:
     
     void setUp();
     void drawLetter(const PlayerInstance& player);
-    void addLetter(PlayerInstance& player, Letter& letter, Position& pos);
+    void addLetter(PlayerInstance& player, std::optional<Letter> letter, Position& pos);
 
     PlayerSet getPlayerSet(const PlayerId& id) const;
 };

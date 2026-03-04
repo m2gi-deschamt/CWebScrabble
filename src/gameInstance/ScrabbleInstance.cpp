@@ -35,18 +35,10 @@ void ScrabbleInstance::drawLetter(const PlayerInstance& player) {
     scrabbleState[player.getId()].rack.push_back(letter);
 };
 
-
 PlayerSet ScrabbleInstance::getPlayerSet(const PlayerId& id) const {
         return scrabbleState.at(id);
 }
 
-void ScrabbleInstance::addLetter(PlayerInstance& player, Letter& letter, Position& pos) {
-
+void ScrabbleInstance::addLetter(PlayerInstance& player, std::optional<Letter> letter, Position& pos) {
+    this->board.placePiece(pos, letter);
 }
-
-
-/*
-    void drawLetter(PlayerInstance& player) {
-        game->drawLetter(player.getId());
-    }
-*/

@@ -12,7 +12,6 @@
 
 using namespace std;
 
-
 class GameInstance {
 protected:
     const Game &game;
@@ -30,10 +29,10 @@ public:
     void addPlayer(const PlayerInstance &player);
     const vector<PlayerInstance>& getPlayers() const;
 
-    void placePiece(Position &position, std::unique_ptr<Piece> piece);
+    void placePiece(Position &position, std::optional<Piece> piece);
     bool havePiece(Position& pos);
     void display();
 
     virtual void drawLetter(const PlayerInstance& player);
-    virtual void addLetter(PlayerInstance& player, Letter& letter, Position& pos);
+    virtual void addLetter(PlayerInstance& player, std::optional<Letter> letter, Position& pos);
 };

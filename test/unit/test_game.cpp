@@ -24,8 +24,7 @@ protected:
         player2 = Player({2}, "Olivier", 24, MALE);
         player1Instance = PlayerInstance(player1);
         player2Instance = PlayerInstance(player2);
-        std::unique_ptr<Piece> letter = std::make_unique<Letter>('a');
-        game.placePiece(position11, std::move(letter));
+        game.placePiece(position11, std::optional<Letter>('a'));
     }
 
     void TearDown() override {

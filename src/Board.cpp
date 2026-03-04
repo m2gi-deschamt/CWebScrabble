@@ -1,7 +1,10 @@
 #include "Board.hpp"
-#include <cassert>
 
-Cell::Cell() : piece(nullptr) {}
+#include <iostream>
+#include <cassert>
+#include <optional>
+
+Cell::Cell() : piece(std::optional<Piece>{}) {}
 
 Board::~Board() = default;
 
@@ -20,21 +23,21 @@ Cell& Board::getCell(const Position& position) {
 }
 
 
-Piece* Board::getPiece(const Position& position) {
+Piece Board::getPiece(const Position& position) {
     Cell& cell = getCell(position);
     if(havePiece(position)) return cell.getPiece();
     assert("No piece on this case");
 }
 
 bool Board::havePiece(const Position& position) {
-    return !getCell(position).isEmpty();
+    return getCell(position).piece.has_value();
 }
 
-void Board::placePiece(const Position& position, std::unique_ptr<Piece> piece) {
+void Board::placePiece(const Position& position, std::optional<Piece> piece) {
     assert(piece && "Cannot place a null piece");
     Cell& cell = getCell(position);
     assert(cell.isEmpty() && "Cell already contains a piece");
-    cell.setPiece(std::move(piece));
+    cell.setPiece(piece);
 }
 
 void Board::movePiece(const Position& from, const Position& to) {
