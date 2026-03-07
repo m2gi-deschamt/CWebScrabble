@@ -1,11 +1,3 @@
-/*
-The idea is to implement vector object
-- a vector have a dynamic size
-- it can be access by index
-- push & pop, on the last element
-- copy data in a bigger space if needed
-*/
-
 #include <iostream>
 #include <cstdlib>
 
@@ -26,7 +18,8 @@ void append(Vector* vector, int value) {
             vector->capacity *=2;
         vector->data = (int*) realloc(vector->data, vector->capacity * sizeof(*vector->data));
     };
-    vector->data[vector->length++] = value;
+    *(vector->data + vector->length) = value;
+    vector->length += 1;
 };
 
 
@@ -41,4 +34,6 @@ int main(int argc, char const *argv[])
     for (size_t i = 0; i < 10; i++) {
         std::cout << " " << vec.data[i] << " ";
     };
+    
+
 }
